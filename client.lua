@@ -1,6 +1,5 @@
 ObjetcSpawn = {}
-ESX                           = nil
-
+ESX = nil
 
 Citizen.CreateThread(function()
   while ESX == nil do
@@ -16,8 +15,6 @@ AddEventHandler('esx:playerLoaded', function(xPlayer)
     ObjetcSpawn = Config[PlayerData.job.name]
   end
 end)
-
-
 
 RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
@@ -53,14 +50,11 @@ AddEventHandler('esx_object:menu',function()
     end
     table.insert(options,{label='Supprimer',value='delete'})
     ESX.UI.Menu.CloseAll()
-    ESX.UI.Menu.Open(
-      'default', GetCurrentResourceName(), 'spawn',
-      {
+    ESX.UI.Menu.Open('default', GetCurrentResourceName(), 'spawn', {
         title    = 'Objets',
         align    = 'top-left',
         elements = options
-      },
-      function(data, menu)
+      }, function(data, menu)
 
         if data.current.value ~= 'delete' then
           local model     = data.current.value
@@ -81,11 +75,8 @@ AddEventHandler('esx_object:menu',function()
         else
           DeleteObjetc()
         end
-
-      end,
-      function(data, menu)
+      end, function(data, menu)
         menu.close()
-      end
-    )
+      end)
   end
 end)
